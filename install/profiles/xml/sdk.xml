@@ -4390,7 +4390,7 @@
             </label>
           </labels>
         </item>
-  <item idno="male" enabled="1" default="0">
+        <item idno="male" enabled="1" default="0">
           <labels>
             <label locale="de_DE" preferred="1">
               <name_singular>Männlich</name_singular>
@@ -4399,6 +4399,80 @@
             <label locale="en_US" preferred="1">
               <name_singular>Male</name_singular>
               <name_plural>Male</name_plural>
+            </label>
+          </labels>
+        </item>
+      </items>
+    </list>
+    <list code="externe_ressourcen" hierarchical="0" system="0" vocabulary="0">
+      <labels>
+        <label locale="de_DE">
+          <name>Externe Ressourcen</name>
+        </label>
+      </labels>
+      <items>
+        <item idno="egw" enabled="1" default="1">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>SDK eGroupware</name_singular>
+              <name_plural>SDK eGroupware</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="gnd" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Gemeinsame Normdatei</name_singular>
+              <name_plural>Gemeinsame Normdatei</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="filmportal" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Filmportal</name_singular>
+              <name_plural>Filmportal</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="lc" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Library of Congress</name_singular>
+              <name_plural>Library of Congress</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="lc" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>IMDB</name_singular>
+              <name_plural>IMDB</name_plural>
+            </label>
+          </labels>
+        </item>
+      </items>
+    </list>
+    <list code="qualifizierung_firmensitz" hierarchical="0" system="0" vocabulary="0">
+      <labels>
+        <label locale="de_DE">
+          <name>Qualifizierung Firmensitz</name>
+        </label>
+      </labels>
+      <items>
+        <item idno="hauptsitz" enabled="1" default="1">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Hauptsitz</name_singular>
+              <name_plural>Hauptsitz</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="weiterer_sitz" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Weiterer Sitz</name_singular>
+              <name_plural>Weiterer Sitz</name_plural>
             </label>
           </labels>
         </item>
@@ -12083,31 +12157,6 @@
         </restriction>
       </typeRestrictions>
     </metadataElement>
-    <metadataElement code="occupation" datatype="List" list="occupation">
-      <labels>
-        <label locale="de_DE">
-          <name>Berufe/Tätigkeiten</name>
-        </label>
-        <label locale="en_US">
-          <name>Occupations</name>
-        </label>
-      </labels>
-      <settings>
-        <setting name="listWidth">40</setting>
-        <setting name="doesNotTakeLocale">1</setting>
-      </settings>
-      <typeRestrictions>
-        <restriction code="r1">
-          <table>ca_entities</table>
-          <type>person</type>
-          <settings>
-            <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">256</setting>
-            <setting name="minimumAttributeBundlesToDisplay">1</setting>
-          </settings>
-        </restriction>
-      </typeRestrictions>
-    </metadataElement>
     <metadataElement code="legal_form" datatype="List" list="legal_form">
       <labels>
         <label locale="de_DE">
@@ -12158,15 +12207,58 @@
         </restriction>
       </typeRestrictions>
     </metadataElement>
-    <metadataElement code="geburtsort" datatype="Text">
+    <metadataElement code="externe_ressourcen" datatype="Container">
+      <labels>
+        <label locale="de_DE">
+          <name>Verweise auf externe Ressourcen</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="doesNotTakeLocale">1</setting>
+      </settings>
+      <elements>
+        <metadataElement code="externe_ressourcen_list" datatype="List" list="externe_ressourcen">
+          <labels>
+            <label locale="de_DE">
+              <name>Quelle</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="listWidth">40</setting>
+          </settings>
+        </metadataElement>
+        <metadataElement code="externe_ressourcen_text" datatype="Text">
+          <labels>
+            <label locale="de_DE">
+              <name>Datensatz-Nummer oder Link</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="fieldWidth">70</setting>
+          </settings>
+        </metadataElement>
+      </elements>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_entities</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">256</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="geburtsort" datatype="GeoNames">
       <labels>
         <label locale="de_DE">
           <name>Geburtsort</name>
         </label>
       </labels>
       <settings>
-        <setting name="fieldWidth">50</setting>
+        <setting name="fieldWidth">80</setting>
         <setting name="doesNotTakeLocale">1</setting>
+        <setting name="canBeEmpty">1</setting>
       </settings>
       <typeRestrictions>
         <restriction code="r1">
@@ -12180,15 +12272,16 @@
         </restriction>
       </typeRestrictions>
     </metadataElement>
-    <metadataElement code="sterbeort" datatype="Text">
+    <metadataElement code="sterbeort" datatype="GeoNames">
       <labels>
         <label locale="de_DE">
           <name>Sterbeort</name>
         </label>
       </labels>
       <settings>
-        <setting name="fieldWidth">50</setting>
+        <setting name="fieldWidth">80</setting>
         <setting name="doesNotTakeLocale">1</setting>
+        <setting name="canBeEmpty">1</setting>
       </settings>
       <typeRestrictions>
         <restriction code="r1">
@@ -12202,20 +12295,19 @@
         </restriction>
       </typeRestrictions>
     </metadataElement>
-    <metadataElement code="geburtsdatum" datatype="DateRange">
+    <metadataElement code="lebensspanne" datatype="DateRange">
       <labels>
         <label locale="de_DE">
-          <name>Geburtsdatum</name>
+          <name>Lebensspanne</name>
         </label>
       </labels>
       <settings>
-        <setting name="fieldWidth">50</setting>
+        <setting name="fieldWidth">60</setting>
         <setting name="doesNotTakeLocale">1</setting>
       </settings>
       <typeRestrictions>
         <restriction code="r1">
           <table>ca_entities</table>
-          <type>person</type>
           <settings>
             <setting name="minAttributesPerRow">0</setting>
             <setting name="maxAttributesPerRow">1</setting>
@@ -12224,129 +12316,206 @@
         </restriction>
       </typeRestrictions>
     </metadataElement>
-    <metadataElement code="sterbedatum" datatype="Text">
+    <metadataElement code="taetigkeit" datatype="Container">
       <labels>
         <label locale="de_DE">
-          <name>Sterbedatum</name>
+          <name>Tätigkeit</name>
         </label>
       </labels>
       <settings>
-        <setting name="fieldWidth">50</setting>
         <setting name="doesNotTakeLocale">1</setting>
       </settings>
+      <elements>
+        <metadataElement code="taetigkeit_line_1" datatype="Container">
+          <labels>
+            <label locale="de_DE">
+              <name>Tätigkeit Zeile 1</name>
+            </label>
+          </labels>
+          <elements>
+            <metadataElement code="taetigkeit_zeit" datatype="DateRange">
+              <labels>
+                <label locale="de_DE">
+                  <name>Zeitspanne</name>
+                </label>
+              </labels>
+              <settings>
+                <setting name="fieldWidth">40</setting>
+              </settings>
+            </metadataElement>
+            <metadataElement code="occupation" datatype="List" list="occupation">
+              <labels>
+                <label locale="de_DE">
+                  <name>Beruf/Tätigkeit</name>
+                </label>
+              </labels>
+              <settings>
+                <setting name="listWidth">50</setting>
+              </settings>
+            </metadataElement>
+          </elements>
+        </metadataElement>
+        <metadataElement code="taetigkeit_line_2" datatype="Container">
+          <labels>
+            <label locale="de_DE">
+              <name>Tätigkeit Zeile 2</name>
+            </label>
+          </labels>
+          <elements>
+            <metadataElement code="taetigkeit_ort" datatype="GeoNames">
+              <labels>
+                <label locale="de_DE">
+                  <name>Ort</name>
+                </label>
+              </labels>
+              <settings>
+                <setting name="fieldWidth">80</setting>
+                <setting name="canBeEmpty">1</setting>
+                <setting name="disableMap">1</setting>
+              </settings>
+            </metadataElement>
+          </elements>
+        </metadataElement>
+      </elements>
       <typeRestrictions>
         <restriction code="r1">
           <table>ca_entities</table>
           <type>person</type>
           <settings>
             <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="maxAttributesPerRow">255</setting>
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
       </typeRestrictions>
     </metadataElement>
-    <metadataElement code="groupware_id" datatype="Text">
+    <metadataElement code="biografische_events" datatype="Container">
       <labels>
         <label locale="de_DE">
-          <name>Egroupware ID</name>
+          <name>Ereignisse</name>
         </label>
       </labels>
       <settings>
-        <setting name="fieldWidth">30</setting>
         <setting name="doesNotTakeLocale">1</setting>
       </settings>
+      <elements>
+        <metadataElement code="bio_events_line_1" datatype="Container">
+          <labels>
+            <label locale="de_DE">
+              <name>Biografische Events Zeile 1</name>
+            </label>
+          </labels>
+          <elements>
+            <metadataElement code="bio_events_zeitspanne" datatype="DateRange">
+              <labels>
+                <label locale="de_DE">
+                  <name>Zeitspanne</name>
+                </label>
+              </labels>
+              <settings>
+                <setting name="fieldWidth">40</setting>
+              </settings>
+            </metadataElement>
+            <metadataElement code="bio_events_ort" datatype="GeoNames">
+              <labels>
+                <label locale="de_DE">
+                  <name>Ort</name>
+                </label>
+              </labels>
+              <settings>
+                <setting name="fieldWidth">60</setting>
+                <setting name="disableMap">1</setting>
+                <setting name="canBeEmpty">1</setting>
+              </settings>
+            </metadataElement>
+          </elements>
+        </metadataElement>
+        <metadataElement code="bio_events_line_2" datatype="Container">
+          <labels>
+            <label locale="de_DE">
+              <name>Biografische Events Zeile 2</name>
+            </label>
+          </labels>
+          <elements>
+            <metadataElement code="bio_events_text" datatype="Text">
+              <labels>
+                <label locale="de_DE">
+                  <name>Ereignisbeschreibung</name>
+                </label>
+              </labels>
+              <settings>
+                <setting name="fieldWidth">90</setting>
+              </settings>
+            </metadataElement>
+          </elements>
+        </metadataElement>
+      </elements>
       <typeRestrictions>
         <restriction code="r1">
           <table>ca_entities</table>
-          <type>person</type>
           <settings>
             <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="maxAttributesPerRow">255</setting>
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
-        <restriction code="r2">
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="attachment" datatype="File">
+      <labels>
+        <label locale="de_DE">
+          <name>Anhang</name>
+        </label>
+      </labels>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_entities</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">255</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="koerperschaft_sitz" datatype="Container">
+      <labels>
+        <label locale="de_DE">
+          <name>Sitz</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="doesNotTakeLocale">1</setting>
+      </settings>
+      <elements>
+        <metadataElement code="qualifizierung_firmensitz" datatype="List" list="qualifizierung_firmensitz">
+          <labels>
+            <label locale="de_DE">
+              <name>Qualifizierung</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="listWidth">40</setting>
+          </settings>
+        </metadataElement>
+        <metadataElement code="firmensitz" datatype="GeoNames">
+          <labels>
+            <label locale="de_DE">
+              <name>Ort</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="fieldWidth">70</setting>
+          </settings>
+        </metadataElement>
+      </elements>
+      <typeRestrictions>
+        <restriction code="r1">
           <table>ca_entities</table>
           <type>corporate_body</type>
           <settings>
             <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
-            <setting name="minimumAttributeBundlesToDisplay">1</setting>
-          </settings>
-        </restriction>
-      </typeRestrictions>
-    </metadataElement>
-    <metadataElement code="filmportal_id" datatype="Text">
-      <labels>
-        <label locale="de_DE">
-          <name>Filmportal ID</name>
-        </label>
-      </labels>
-      <settings>
-        <setting name="fieldWidth">70</setting>
-        <setting name="doesNotTakeLocale">1</setting>
-      </settings>
-      <typeRestrictions>
-        <restriction code="r1">
-          <table>ca_entities</table>
-          <type>person</type>
-          <settings>
-            <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
-            <setting name="minimumAttributeBundlesToDisplay">1</setting>
-          </settings>
-        </restriction>
-      </typeRestrictions>
-    </metadataElement>
-    <metadataElement code="gnd_id" datatype="Text">
-      <labels>
-        <label locale="de_DE">
-          <name>GND ID</name>
-        </label>
-      </labels>
-      <settings>
-        <setting name="fieldWidth">30</setting>
-        <setting name="doesNotTakeLocale">1</setting>
-      </settings>
-      <typeRestrictions>
-        <restriction code="r1">
-          <table>ca_entities</table>
-          <type>person</type>
-          <settings>
-            <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
-            <setting name="minimumAttributeBundlesToDisplay">1</setting>
-          </settings>
-        </restriction>
-        <restriction code="r2">
-          <table>ca_entities</table>
-          <type>corporate_body</type>
-          <settings>
-            <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
-            <setting name="minimumAttributeBundlesToDisplay">1</setting>
-          </settings>
-        </restriction>
-      </typeRestrictions>
-    </metadataElement>
-    <metadataElement code="biografie" datatype="Text">
-      <labels>
-        <label locale="de_DE">
-          <name>Biografie</name>
-        </label>
-      </labels>
-      <settings>
-        <setting name="fieldWidth">70</setting>
-        <setting name="fieldHeight">10</setting>
-      </settings>
-      <typeRestrictions>
-        <restriction code="r1">
-          <table>ca_entities</table>
-          <type>person</type>
-          <settings>
-            <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="maxAttributesPerRow">255</setting>
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
@@ -14579,6 +14748,14 @@
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
+        <restriction code="r5">
+          <table>ca_entities</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">10</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
       </typeRestrictions>
     </metadataElement>
     <metadataElement code="category" datatype="Text">
@@ -16443,7 +16620,10 @@
         </label>
       </labels>
       <screens>
-        <screen idno="basic" default="1">
+        
+        <!-- PERSON -->
+        
+        <screen idno="basic_person" default="1">
           <labels>
             <label locale="de_DE">
               <name>Basisinfo</name>
@@ -16452,6 +16632,9 @@
               <name>Basic info</name>
             </label>
           </labels>
+          <typeRestrictions>
+            <restriction code="person" type="person"/>
+          </typeRestrictions>
           <bundlePlacements>
             <placement code="preferred_labels">
               <bundle>preferred_labels</bundle>
@@ -16465,32 +16648,32 @@
             <placement code="idno">
               <bundle>idno</bundle>
             </placement>
-            <placement code="ca_attribute_geburtsdatum">
-              <bundle>ca_attribute_geburtsdatum</bundle>
-            </placement>
             <placement code="ca_attribute_geburtsort">
               <bundle>ca_attribute_geburtsort</bundle>
-            </placement>
-            <placement code="ca_attribute_sterbedatum">
-              <bundle>ca_attribute_sterbedatum</bundle>
             </placement>
             <placement code="ca_attribute_sterbeort">
               <bundle>ca_attribute_sterbeort</bundle>
             </placement>
-            <placement code="ca_attribute_occupation">
-              <bundle>ca_attribute_occupation</bundle>
+            <placement code="ca_attribute_lebensspanne">
+              <bundle>ca_attribute_lebensspanne</bundle>
             </placement>
-            <placement code="ca_attribute_legal_form">
-              <bundle>ca_attribute_legal_form</bundle>
+            <placement code="ca_attribute_source_notes">
+              <bundle>ca_attribute_source_notes</bundle>
             </placement>
-            <placement code="ca_attribute_groupware_id">
-              <bundle>ca_attribute_groupware_id</bundle>
+            <placement code="ca_attribute_externe_ressourcen">
+              <bundle>ca_attribute_externe_ressourcen</bundle>
             </placement>
-            <placement code="ca_attribute_filmportal_id">
-              <bundle>ca_attribute_filmportal_id</bundle>
+            <placement code="ca_attribute_taetigkeit">
+              <bundle>ca_attribute_taetigkeit</bundle>
             </placement>
-						<placement code="ca_attribute_gnd_id">
-              <bundle>ca_attribute_gnd_id</bundle>
+            <placement code="ca_attribute_biografische_events">
+              <bundle>ca_attribute_biografische_events</bundle>
+            </placement>
+            <placement code="ca_attribute_remarks">
+              <bundle>ca_attribute_remarks</bundle>
+            </placement>
+            <placement code="ca_attribute_attachment">
+              <bundle>ca_attribute_attachment</bundle>
             </placement>
             <placement code="access">
               <bundle>access</bundle>
@@ -16498,14 +16681,70 @@
             <placement code="status">
               <bundle>status</bundle>
             </placement>
-            <placement code="ca_attribute_biografie">
-              <bundle>ca_attribute_biografie</bundle>
+          </bundlePlacements>
+        </screen>
+        
+        <!-- KÖRPERSCHAFT -->
+        
+        <screen idno="basic_corporate_body" default="1">
+          <labels>
+            <label locale="de_DE">
+              <name>Basisinfo</name>
+            </label>
+            <label locale="en_US">
+              <name>Basic info</name>
+            </label>
+          </labels>
+          <typeRestrictions>
+            <restriction code="corporate_body" type="corporate_body"/>
+          </typeRestrictions>
+          <bundlePlacements>
+            <placement code="preferred_labels">
+              <bundle>preferred_labels</bundle>
+            </placement>
+            <placement code="nonpreferred_labels">
+              <bundle>nonpreferred_labels</bundle>
+            </placement>
+            <placement code="idno">
+              <bundle>idno</bundle>
+            </placement>
+            <placement code="ca_attribute_lebensspanne">
+              <bundle>ca_attribute_lebensspanne</bundle>
+              <settings>
+                <setting name="label" locale="de_DE">Wirkungszeitraum</setting>
+              </settings>
+            </placement>
+            <placement code="ca_attribute_koerperschaft_sitz">
+              <bundle>ca_attribute_koerperschaft_sitz</bundle>
             </placement>
             <placement code="ca_attribute_source_notes">
               <bundle>ca_attribute_source_notes</bundle>
             </placement>
+            <placement code="ca_attribute_externe_ressourcen">
+              <bundle>ca_attribute_externe_ressourcen</bundle>
+            </placement>
+            <placement code="ca_attribute_biografische_events">
+              <bundle>ca_attribute_biografische_events</bundle>
+              <settings>
+                <setting name="label" locale="de_DE">Institutions- und Firmengeschichte</setting>
+              </settings>
+            </placement>
+            <placement code="ca_attribute_remarks">
+              <bundle>ca_attribute_remarks</bundle>
+            </placement>
+            <placement code="ca_attribute_attachment">
+              <bundle>ca_attribute_attachment</bundle>
+            </placement>
+            <placement code="access">
+              <bundle>access</bundle>
+            </placement>
+            <placement code="status">
+              <bundle>status</bundle>
+            </placement>
           </bundlePlacements>
         </screen>
+        
+        
         <screen idno="relationships" default="0">
           <labels>
             <label locale="de_DE">
