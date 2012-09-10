@@ -547,6 +547,37 @@
         </item>
       </items>
     </list>
+    <list code="collection_types" hierarchical="1" system="0" vocabulary="0">
+      <labels>
+        <label locale="de_DE">
+          <name>Sammlungstypen</name>
+        </label>
+        <label locale="en_US">
+          <name>Collection types</name>
+        </label>
+      </labels>
+      <items>
+        <item idno="vorlass" enabled="1" default="1">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Vorlass</name_singular>
+              <name_plural>Vorlass</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="nachlass" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Nachlass</name_singular>
+              <name_plural>Nachlass</name_plural>
+            </label>
+          </labels>
+        </item>
+        
+        <!-- TODO: RNA -->
+        
+      </items>
+    </list>
     <list code="entity_types" hierarchical="1" system="0" vocabulary="0">
       <labels>
         <label locale="de_DE">
@@ -12387,6 +12418,15 @@
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
+        <restriction code="r2">
+          <table>ca_entities</table>
+          <type>group</type>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">255</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
       </typeRestrictions>
     </metadataElement>
     <metadataElement code="biografische_events" datatype="Container">
@@ -16744,6 +16784,91 @@
           </bundlePlacements>
         </screen>
         
+        <!-- PERSONENGRUPPEN -->
+        
+        <screen idno="basic_group" default="1">
+          <labels>
+            <label locale="de_DE">
+              <name>Basisinfo</name>
+            </label>
+            <label locale="en_US">
+              <name>Basic info</name>
+            </label>
+          </labels>
+          <typeRestrictions>
+            <restriction code="group" type="group"/>
+          </typeRestrictions>
+          <bundlePlacements>
+            <placement code="preferred_labels">
+              <bundle>preferred_labels</bundle>
+            </placement>
+            <placement code="nonpreferred_labels">
+              <bundle>nonpreferred_labels</bundle>
+            </placement>
+            <placement code="idno">
+              <bundle>idno</bundle>
+            </placement>
+            <placement code="ca_attribute_lebensspanne">
+              <bundle>ca_attribute_lebensspanne</bundle>
+              <settings>
+                <setting name="label" locale="de_DE">Wirkungszeitraum</setting>
+              </settings>
+            </placement>
+            <placement code="ca_attribute_externe_ressourcen">
+              <bundle>ca_attribute_externe_ressourcen</bundle>
+            </placement>
+            <placement code="ca_attribute_taetigkeit">
+              <bundle>ca_attribute_taetigkeit</bundle>
+            </placement>
+            <placement code="ca_attribute_biografische_events">
+              <bundle>ca_attribute_biografische_events</bundle>
+            </placement>
+            <placement code="ca_attribute_remarks">
+              <bundle>ca_attribute_remarks</bundle>
+            </placement>
+            <placement code="ca_attribute_attachment">
+              <bundle>ca_attribute_attachment</bundle>
+            </placement>
+          </bundlePlacements>
+        </screen>
+        
+        <!-- KUNSTFIGUR -->
+        
+        <screen idno="basic_artificial_character" default="1">
+          <labels>
+            <label locale="de_DE">
+              <name>Basisinfo</name>
+            </label>
+            <label locale="en_US">
+              <name>Basic info</name>
+            </label>
+          </labels>
+          <typeRestrictions>
+            <restriction code="artificial_character" type="artificial_character"/>
+          </typeRestrictions>
+          <bundlePlacements>
+            <placement code="preferred_labels">
+              <bundle>preferred_labels</bundle>
+            </placement>
+            <placement code="nonpreferred_labels">
+              <bundle>nonpreferred_labels</bundle>
+            </placement>
+            <placement code="idno">
+              <bundle>idno</bundle>
+            </placement>
+            <placement code="ca_attribute_externe_ressourcen">
+              <bundle>ca_attribute_externe_ressourcen</bundle>
+            </placement>
+            <placement code="ca_attribute_remarks">
+              <bundle>ca_attribute_remarks</bundle>
+            </placement>
+            <placement code="ca_attribute_attachment">
+              <bundle>ca_attribute_attachment</bundle>
+            </placement>
+          </bundlePlacements>
+        </screen>
+        
+        <!-- GENERAL -->
         
         <screen idno="relationships" default="0">
           <labels>
@@ -17744,19 +17869,15 @@
     </relationshipTable>
     <relationshipTable name="ca_entities_x_vocabulary_terms">
       <types>
-        <type code="corporate_body_type" default="0">
+        <type code="related" default="0">
           <labels>
             <label locale="de_DE">
-              <typename>hat Typ</typename>
-              <typename_reverse>ist Typ von</typename_reverse>
-            </label>
-            <label locale="en_US">
-              <typename>has type</typename>
-              <typename_reverse>is type of</typename_reverse>
+              <typename>steht in Beziehung mit</typename>
+              <typename_reverse>steht in Beziehung mit</typename_reverse>
             </label>
           </labels>
           <subTypeLeft>corporate_body</subTypeLeft>
-          <subTypeRight></subTypeRight>
+          <subTypeRight/>
         </type>
         <type code="has_generic_concept" default="0">
           <labels>
@@ -17995,20 +18116,6 @@
           </labels>
           <subTypeLeft>corporate_body</subTypeLeft>
           <subTypeRight>av_work</subTypeRight>
-        </type>
-        <type code="production_company_av_manifest" default="0">
-          <labels>
-            <label locale="de_DE">
-              <typename>Produktionsfirma für</typename>
-              <typename_reverse>Produktionsfirma</typename_reverse>
-            </label>
-            <label locale="en_US">
-              <typename>production company for</typename>
-              <typename_reverse>production company</typename_reverse>
-            </label>
-          </labels>
-          <subTypeLeft>corporate_body</subTypeLeft>
-          <subTypeRight>av_manifestation</subTypeRight>
         </type>
         <type code="co_production_company" default="0">
           <labels>
@@ -19321,4 +19428,3 @@
     </login>
   </logins>
 </profile>
-
