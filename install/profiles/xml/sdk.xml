@@ -561,7 +561,7 @@
           <labels>
             <label locale="de_DE" preferred="1">
               <name_singular>Vorlass</name_singular>
-              <name_plural>Vorlass</name_plural>
+              <name_plural>Vorlässe</name_plural>
             </label>
           </labels>
         </item>
@@ -569,13 +569,50 @@
           <labels>
             <label locale="de_DE" preferred="1">
               <name_singular>Nachlass</name_singular>
-              <name_plural>Nachlass</name_plural>
+              <name_plural>Nachlässe</name_plural>
             </label>
           </labels>
         </item>
-        
-        <!-- TODO: RNA -->
-        
+        <item idno="archiv" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Archiv</name_singular>
+              <name_plural>Archive</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="sammlung" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Sammlung</name_singular>
+              <name_plural>Sammlungen</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="teilbestand" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Teilbestand</name_singular>
+              <name_plural>Teilbestände</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="kryptobestand" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Kryptobestand</name_singular>
+              <name_plural>Kryptobestände</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="einzelautographen" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Einzelautographen</name_singular>
+              <name_plural>Einzelautographen</name_plural>
+            </label>
+          </labels>
+        </item>
       </items>
     </list>
     <list code="entity_types" hierarchical="1" system="0" vocabulary="0">
@@ -15582,6 +15619,52 @@
         </restriction>
       </typeRestrictions>
     </metadataElement>
+    <metadataElement code="benutzungsbeschraenkungen" datatype="Text">
+      <labels>
+        <label locale="de_DE">
+          <name>Benutzungsbeschränkungen</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="fieldWidth">90</setting>
+        <setting name="fieldHeight">1</setting>
+        <setting name="minChars">0</setting>
+        <setting name="maxChars">65535</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_collections</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="collection_content" datatype="Text">
+      <labels>
+        <label locale="de_DE">
+          <name>Inhalt</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="fieldWidth">90</setting>
+        <setting name="fieldHeight">6</setting>
+        <setting name="minChars">0</setting>
+        <setting name="maxChars">65535</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_collections</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
   </elementSets>
   <userInterfaces>
     <userInterface code="occurrence_cataloguers_ui" type="ca_occurrences">
@@ -17384,6 +17467,79 @@
             </placement>
             <placement code="ca_attribute_georeference">
               <bundle>ca_attribute_georeference</bundle>
+            </placement>
+          </bundlePlacements>
+        </screen>
+      </screens>
+    </userInterface>
+    <userInterface code="collections_cataloguers_ui" type="ca_collections">
+      <labels>
+        <label locale="en_US">
+          <name>Collection editor</name>
+        </label>
+      </labels>
+      <screens>
+        <screen idno="basic" default="1">
+          <labels>
+            <label locale="en_US">
+              <name>Basisinfo</name>
+            </label>
+          </labels>
+          <bundlePlacements>
+            <placement code="idno">
+              <bundle>idno</bundle>
+            </placement>
+            <placement code="preferred_labels">
+              <bundle>preferred_labels</bundle>
+              <settings>
+                <setting name="label" locale="en_US">Title</setting>
+                <setting name="label" locale="de_DE">Titel</setting>
+              </settings>
+            </placement>
+            <placement code="status">
+              <bundle>status</bundle>
+            </placement>
+            <placement code="ca_entities_person">
+              <bundle>ca_entities</bundle>
+              <settings>
+                <setting name="restrict_to_types">person</setting>
+                <setting name="label" locale="de_DE">Personen</setting>
+              </settings>
+            </placement>
+            <placement code="ca_entities_corporate_body">
+              <bundle>ca_entities</bundle>
+              <settings>
+                <setting name="restrict_to_types">corporate_body</setting>
+                <setting name="label" locale="de_DE">Körperschaften</setting>
+              </settings>
+            </placement>
+            <placement code="ca_entities_groups">
+              <bundle>ca_entities</bundle>
+              <settings>
+                <setting name="restrict_to_types">group</setting>
+                <setting name="label" locale="de_DE">Personengruppen</setting>
+              </settings>
+            </placement>
+            <placement code="benutzungsbeschraenkungen">
+              <bundle>ca_attribute_benutzungsbeschraenkungen</bundle>
+            </placement>
+            <placement code="collection_content">
+              <bundle>collection_content</bundle>
+            </placement>
+          </bundlePlacements>
+        </screen>
+        <screen idno="content" default="0">
+          <labels>
+            <label locale="de_DE">
+              <name>Erfassung</name>
+            </label>
+          </labels>
+          <bundlePlacements>
+            <placement code="ca_objects">
+              <bundle>ca_objects</bundle>
+              <settings>
+                <setting name="label" locale="de_DE">Inhalt</setting>
+              </settings>
             </placement>
           </bundlePlacements>
         </screen>
