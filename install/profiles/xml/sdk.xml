@@ -547,7 +547,7 @@
         </item>
       </items>
     </list>
-    <list code="collection_types" hierarchical="1" system="0" vocabulary="0">
+    <list code="collection_types" hierarchical="1" system="1" vocabulary="0">
       <labels>
         <label locale="de_DE">
           <name>Sammlungstypen</name>
@@ -17524,7 +17524,7 @@
               <bundle>ca_attribute_benutzungsbeschraenkungen</bundle>
             </placement>
             <placement code="collection_content">
-              <bundle>collection_content</bundle>
+              <bundle>ca_attribute_collection_content</bundle>
             </placement>
           </bundlePlacements>
         </screen>
@@ -19224,6 +19224,18 @@
           </labels>
           <subTypeLeft>av_work</subTypeLeft>
           <subTypeRight></subTypeRight>
+        </type>
+      </types>
+    </relationshipTable>
+    <relationshipTable name="ca_objects_x_collections">
+      <types>
+        <type code="is_part_of" default="1">
+          <labels>
+            <label locale="de_DE">
+              <typename>ist Teil von</typename>
+              <typename_reverse>enthält</typename_reverse>
+            </label>
+          </labels>
         </type>
       </types>
     </relationshipTable>
