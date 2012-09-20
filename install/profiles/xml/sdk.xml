@@ -313,63 +313,154 @@
         </label>
       </labels>
       <items>
-        <item idno="film" enabled="1" default="0">
+        <item idno="av_material" enabled="0" default="1">
           <labels>
             <label locale="de_DE" preferred="1">
-              <name_singular>Film</name_singular>
-              <name_plural>Filme</name_plural>
+              <name_singular>AV-Material</name_singular>
+              <name_plural>AV-Materialien</name_plural>
             </label>
-            <label locale="en_US" preferred="1">
-              <name_singular>Film</name_singular>
-              <name_plural>Films</name_plural>
+          </labels>
+          <items>
+            <item idno="film" enabled="1" default="0">
+              <labels>
+                <label locale="de_DE" preferred="1">
+                  <name_singular>Film</name_singular>
+                  <name_plural>Filme</name_plural>
+                </label>
+                <label locale="en_US" preferred="1">
+                  <name_singular>Film</name_singular>
+                  <name_plural>Films</name_plural>
+                </label>
+              </labels>
+            </item>
+            <item idno="non_tape" enabled="1" default="0">
+              <labels>
+                <label locale="de_DE" preferred="1">
+                  <name_singular>Non-Tape</name_singular>
+                  <name_plural>Non-Tape</name_plural>
+                </label>
+                <label locale="en_US" preferred="1">
+                  <name_singular>Non-Tape</name_singular>
+                  <name_plural>Non-Tape</name_plural>
+                </label>
+              </labels>
+            </item>
+            <item idno="tape_digital" enabled="1" default="0">
+              <labels>
+                <label locale="de_DE" preferred="1">
+                  <name_singular>Tape (digital)</name_singular>
+                  <name_plural>Tape (digital)</name_plural>
+                </label>
+                <label locale="en_US" preferred="1">
+                  <name_singular>Tape (digital)</name_singular>
+                  <name_plural>Tape (digital)</name_plural>
+                </label>
+              </labels>
+            </item>
+            <item idno="tape_analog" enabled="1" default="0">
+              <labels>
+                <label locale="de_DE" preferred="1">
+                  <name_singular>Tape (analog)</name_singular>
+                  <name_plural>Tape (analog)</name_plural>
+                </label>
+                <label locale="en_US" preferred="1">
+                  <name_singular>Tape (analog)</name_singular>
+                  <name_plural>Tape (analog)</name_plural>
+                </label>
+              </labels>
+            </item>
+            <item idno="file" enabled="1" default="0">
+              <labels>
+                <label locale="de_DE" preferred="1">
+                  <name_singular>Datei</name_singular>
+                  <name_plural>Dateien</name_plural>
+                </label>
+                <label locale="en_US" preferred="1">
+                  <name_singular>File</name_singular>
+                  <name_plural>Files</name_plural>
+                </label>
+              </labels>
+            </item>
+          </items>
+        </item>
+        <item idno="digitales_textdokument" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Digitales Textdokument</name_singular>
+              <name_plural>Digitale Textdokumente</name_plural>
             </label>
           </labels>
         </item>
-        <item idno="non_tape" enabled="1" default="0">
+        <item idno="digitalisiertes_textdokument" enabled="1" default="0">
           <labels>
             <label locale="de_DE" preferred="1">
-              <name_singular>Non-Tape</name_singular>
-              <name_plural>Non-Tape</name_plural>
-            </label>
-            <label locale="en_US" preferred="1">
-              <name_singular>Non-Tape</name_singular>
-              <name_plural>Non-Tape</name_plural>
+              <name_singular>Digitalisiertes Textdokument</name_singular>
+              <name_plural>Digitalisierte Textdokumente</name_plural>
             </label>
           </labels>
         </item>
-        <item idno="tape_digital" enabled="1" default="0">
+        <item idno="analoges_tondokument" enabled="1" default="0">
           <labels>
             <label locale="de_DE" preferred="1">
-              <name_singular>Tape (digital)</name_singular>
-              <name_plural>Tape (digital)</name_plural>
-            </label>
-            <label locale="en_US" preferred="1">
-              <name_singular>Tape (digital)</name_singular>
-              <name_plural>Tape (digital)</name_plural>
+              <name_singular>Analoges Tondokument</name_singular>
+              <name_plural>Analoge Tondokumente</name_plural>
             </label>
           </labels>
         </item>
-        <item idno="tape_analog" enabled="1" default="0">
+        <item idno="digitales_tondokument" enabled="1" default="0">
           <labels>
             <label locale="de_DE" preferred="1">
-              <name_singular>Tape (analog)</name_singular>
-              <name_plural>Tape (analog)</name_plural>
-            </label>
-            <label locale="en_US" preferred="1">
-              <name_singular>Tape (analog)</name_singular>
-              <name_plural>Tape (analog)</name_plural>
+              <name_singular>Digitales Tondokument</name_singular>
+              <name_plural>Digitale Tondokumente</name_plural>
             </label>
           </labels>
         </item>
-        <item idno="file" enabled="1" default="0">
+        <item idno="digitalisiertes_tondokument" enabled="1" default="0">
           <labels>
             <label locale="de_DE" preferred="1">
-              <name_singular>Datei</name_singular>
-              <name_plural>Dateien</name_plural>
+              <name_singular>Digitalisiertes Tondokument</name_singular>
+              <name_plural>Digitalisierte Tondokumente</name_plural>
             </label>
-            <label locale="en_US" preferred="1">
-              <name_singular>File</name_singular>
-              <name_plural>Files</name_plural>
+          </labels>
+        </item>
+        
+        <item idno="analoges_Bilddokument" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Analoges Bilddokument</name_singular>
+              <name_plural>Analoge Bilddokumente</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="digitales_bilddokument" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Digitales Bilddokument</name_singular>
+              <name_plural>Digitale Bilddokumente</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="digitalisiertes_bilddokument" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Digitalisiertes Bilddokument</name_singular>
+              <name_plural>Digitalisierte Bilddokumente</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="mikrofilm" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Mikrofilm</name_singular>
+              <name_plural>Mikrofilme</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="objekt" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Objekt</name_singular>
+              <name_plural>Objekt</name_plural>
             </label>
           </labels>
         </item>
@@ -17085,7 +17176,28 @@
         </label>
       </labels>
       <screens>
-        <screen idno="basic" default="1">
+        <screen idno="basic_rna" default="1">
+          <labels>
+            <label locale="de_DE">
+              <name>Basisinfo</name>
+            </label>
+          </labels>
+          <bundlePlacements>
+            <placement code="idno">
+              <bundle>idno</bundle>
+              <settings>
+                <setting name="label" locale="de_DE">Signatur</setting>
+              </settings>
+            </placement>
+            <placement code="object_labels">
+              <bundle>preferred_labels</bundle>
+            </placement>
+          </bundlePlacements>
+        </screen>
+        
+        <!-- AV MATERIAL SCREENS -->
+        
+        <screen idno="basic_av" default="1">
           <labels>
             <label locale="en_US">
               <name>Basic info</name>
@@ -17094,6 +17206,13 @@
               <name>Basisinfo</name>
             </label>
           </labels>
+          <typeRestrictions>
+            <restriction code="r1" type="file"/>
+            <restriction code="r2" type="film"/>
+            <restriction code="r3" type="non_tape"/>
+            <restriction code="r4" type="tape_digital"/>
+            <restriction code="r5" type="tape_analog"/>
+          </typeRestrictions>
           <bundlePlacements>
             <placement code="idno">
               <bundle>idno</bundle>
