@@ -424,7 +424,7 @@
           </labels>
         </item>
         
-        <item idno="analoges_Bilddokument" enabled="1" default="0">
+        <item idno="analoges_bilddokument" enabled="1" default="0">
           <labels>
             <label locale="de_DE" preferred="1">
               <name_singular>Analoges Bilddokument</name_singular>
@@ -11849,6 +11849,47 @@
         </item>
       </items>
     </list>
+    <list code="materialhauptgruppe" hierarchical="0" system="0" vocabulary="0">
+      <labels>
+        <label locale="de_DE">
+          <name>Materialhauptgruppe</name>
+        </label>
+      </labels>
+      <items>
+        <item idno="werk" enabled="1" default="1">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Werk</name_singular>
+              <name_plural>Werke</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="korrespondenz" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Korrespondenz</name_singular>
+              <name_plural>Korrespondenzen</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="dokument" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>(Lebens-)Dokument</name_singular>
+              <name_plural>(Lebens-)Dokumente</name_plural>
+            </label>
+          </labels>
+        </item>
+        <item idno="sammlungsstück_objekt" enabled="1" default="0">
+          <labels>
+            <label locale="de_DE" preferred="1">
+              <name_singular>Sammlungsstück / Objekt</name_singular>
+              <name_plural>Sammlungsstücke / Objekte</name_plural>
+            </label>
+          </labels>
+        </item>
+      </items>
+    </list>
   </lists>
   <elementSets>
     <metadataElement code="legacy_preistraeger" datatype="Text">
@@ -14956,10 +14997,10 @@
     <metadataElement code="time" datatype="DateRange">
       <labels>
         <label locale="de_DE">
-          <name>Zeitangabe</name>
+          <name>Datierung</name>
         </label>
         <label locale="en_US">
-          <name>Time</name>
+          <name>Date</name>
         </label>
       </labels>
       <settings>
@@ -14967,6 +15008,14 @@
         <setting name="fieldHeight">1</setting>
       </settings>
       <typeRestrictions>
+        <restriction code="r0">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
         <restriction code="r1">
           <table>ca_occurrences</table>
           <type>prize_giving_ceremony</type>
@@ -15751,6 +15800,79 @@
           <settings>
             <setting name="minAttributesPerRow">0</setting>
             <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="materialhauptgruppe" datatype="List" list="materialhauptgruppe">
+      <labels>
+        <label locale="de_DE">
+          <name>Materialhauptgruppe</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="listWidth">60</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="alte_signaturen" datatype="Text">
+      <labels>
+        <label locale="de_DE">
+          <name>alte Signaturen</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="fieldWidth">70</setting>
+        <setting name="fieldHeight">1</setting>
+        <setting name="minChars">0</setting>
+        <setting name="maxChars">65535</setting>
+        <setting name="doesNotTakeLocale">1</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">256</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="entstehungsort" datatype="GeoNames">
+      <labels>
+        <label locale="de_DE">
+          <name>Entstehungsort</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="canBeEmpty">1</setting>
+        <setting name="doesNotTakeLocale">1</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_collections</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">256</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+        <restriction code="r2">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">256</setting>
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
@@ -17176,12 +17298,27 @@
         </label>
       </labels>
       <screens>
+        
+        <!-- RNA TYPE SCREENS -->
+        
         <screen idno="basic_rna" default="1">
           <labels>
             <label locale="de_DE">
               <name>Basisinfo</name>
             </label>
           </labels>
+          <typeRestrictions>
+            <restriction code="r1" type="digitales_textdokument"/>
+            <restriction code="r2" type="digitalisiertes_textdokument"/>
+            <restriction code="r3" type="analoges_tondokument"/>
+            <restriction code="r4" type="digitales_tondokument"/>
+            <restriction code="r5" type="digitalisiertes_tondokument"/>
+            <restriction code="r6" type="analoges_bilddokument"/>
+            <restriction code="r7" type="digitales_bilddokument"/>
+            <restriction code="r8" type="digitalisiertes_bilddokument"/>
+            <restriction code="r9" type="mikrofilm"/>
+            <restriction code="r10" type="objekt"/>
+          </typeRestrictions>
           <bundlePlacements>
             <placement code="idno">
               <bundle>idno</bundle>
@@ -17189,8 +17326,72 @@
                 <setting name="label" locale="de_DE">Signatur</setting>
               </settings>
             </placement>
+            <placement code="ca_attribute_alte_signaturen">
+              <bundle>ca_attribute_alte_signaturen</bundle>
+            </placement>
             <placement code="object_labels">
               <bundle>preferred_labels</bundle>
+            </placement>
+            <placement code="alternate_object_labels">
+              <bundle>nonpreferred_labels</bundle>
+            </placement>
+            <placement code="ca_attribute_materialhauptgruppe">
+              <bundle>ca_attribute_materialhauptgruppe</bundle>
+            </placement>
+            <placement code="ca_attribute_time">
+              <bundle>ca_attribute_time</bundle>
+            </placement>
+          </bundlePlacements>
+        </screen>
+        
+        <screen idno="rel_rna" default="0">
+          <labels>
+            <label locale="de_DE">
+              <name>Referenzen</name>
+            </label>
+          </labels>
+          <typeRestrictions>
+            <restriction code="r1" type="digitales_textdokument"/>
+            <restriction code="r2" type="digitalisiertes_textdokument"/>
+            <restriction code="r3" type="analoges_tondokument"/>
+            <restriction code="r4" type="digitales_tondokument"/>
+            <restriction code="r5" type="digitalisiertes_tondokument"/>
+            <restriction code="r6" type="analoges_bilddokument"/>
+            <restriction code="r7" type="digitales_bilddokument"/>
+            <restriction code="r8" type="digitalisiertes_bilddokument"/>
+            <restriction code="r9" type="mikrofilm"/>
+            <restriction code="r10" type="objekt"/>
+          </typeRestrictions>
+          <bundlePlacements>
+            <placement code="ca_attribute_entstehungsort">
+              <bundle>ca_attribute_entstehungsort</bundle>
+            </placement>
+            <placement code="ca_collections">
+              <bundle>ca_collections</bundle>
+              <settings>
+                <setting name="label" locale="de_DE">Sammlungen</setting>
+              </settings>
+            </placement>
+            <placement code="ca_entities_person">
+              <bundle>ca_entities</bundle>
+              <settings>
+                <setting name="restrict_to_types">person</setting>
+                <setting name="label" locale="de_DE">Personen</setting>
+              </settings>
+            </placement>
+            <placement code="ca_entities_corporate_body">
+              <bundle>ca_entities</bundle>
+              <settings>
+                <setting name="restrict_to_types">corporate_body</setting>
+                <setting name="label" locale="de_DE">Körperschaften</setting>
+              </settings>
+            </placement>
+            <placement code="ca_entities_groups">
+              <bundle>ca_entities</bundle>
+              <settings>
+                <setting name="restrict_to_types">group</setting>
+                <setting name="label" locale="de_DE">Personengruppen</setting>
+              </settings>
             </placement>
           </bundlePlacements>
         </screen>
@@ -17644,6 +17845,9 @@
             </placement>
             <placement code="collection_content">
               <bundle>ca_attribute_collection_content</bundle>
+            </placement>
+            <placement code="ca_attribute_entstehungsort">
+              <bundle>ca_attribute_entstehungsort</bundle>
             </placement>
           </bundlePlacements>
         </screen>
