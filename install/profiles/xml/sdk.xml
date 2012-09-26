@@ -4,7 +4,7 @@
   <profileDescription></profileDescription>
   <locales>
     <locale lang="de" country="DE">Deutsch (DE)</locale>
-    <locale lang="en" country="US">English (US)</locale>
+    <locale lang="en" country="US" dontUseForCataloguing="1">English (US)</locale>
   </locales>
   <lists>
     <list code="loan_types" hierarchical="0" system="0" vocabulary="0">
@@ -14248,6 +14248,14 @@
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
+        <restriction code="r2">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">10</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
       </typeRestrictions>
     </metadataElement>
     <metadataElement code="dubbed_language" datatype="Container">
@@ -15052,6 +15060,14 @@
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
+        <restriction code="r5">
+          <table>ca_collections</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
       </typeRestrictions>
     </metadataElement>
     <metadataElement code="production_year" datatype="DateRange">
@@ -15193,6 +15209,14 @@
         <restriction code="r1">
           <table>ca_occurrences</table>
           <type>av_work</type>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+        <restriction code="r2">
+          <table>ca_objects</table>
           <settings>
             <setting name="minAttributesPerRow">0</setting>
             <setting name="maxAttributesPerRow">1</setting>
@@ -15762,30 +15786,7 @@
     <metadataElement code="benutzungsbeschraenkungen" datatype="Text">
       <labels>
         <label locale="de_DE">
-          <name>Benutzungsbeschränkungen</name>
-        </label>
-      </labels>
-      <settings>
-        <setting name="fieldWidth">90</setting>
-        <setting name="fieldHeight">1</setting>
-        <setting name="minChars">0</setting>
-        <setting name="maxChars">65535</setting>
-      </settings>
-      <typeRestrictions>
-        <restriction code="r1">
-          <table>ca_collections</table>
-          <settings>
-            <setting name="minAttributesPerRow">0</setting>
-            <setting name="maxAttributesPerRow">1</setting>
-            <setting name="minimumAttributeBundlesToDisplay">1</setting>
-          </settings>
-        </restriction>
-      </typeRestrictions>
-    </metadataElement>
-    <metadataElement code="collection_content" datatype="Text">
-      <labels>
-        <label locale="de_DE">
-          <name>Inhalt</name>
+          <name>Benutzungsbeschränkungen, Sperrvermerk</name>
         </label>
       </labels>
       <settings>
@@ -15802,6 +15803,45 @@
             <setting name="maxAttributesPerRow">1</setting>
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
+        </restriction>
+        <restriction code="r2">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="content_count" datatype="Text">
+      <labels>
+        <label locale="de_DE">
+          <name>Art, Umfang und Anzahl</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="fieldWidth">90</setting>
+        <setting name="fieldHeight">6</setting>
+        <setting name="minChars">0</setting>
+        <setting name="maxChars">65535</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_collections</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+        <restriction code="r2">
+        <table>ca_objects</table>
+        <settings>
+          <setting name="minAttributesPerRow">0</setting>
+          <setting name="maxAttributesPerRow">1</setting>
+          <setting name="minimumAttributeBundlesToDisplay">1</setting>
+        </settings>
         </restriction>
       </typeRestrictions>
     </metadataElement>
@@ -15873,6 +15913,175 @@
           <settings>
             <setting name="minAttributesPerRow">0</setting>
             <setting name="maxAttributesPerRow">256</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="work_dimensions" datatype="Container">
+      <labels>
+        <label locale="de_DE">
+          <name>Abmessungen</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="doesNotTakeLocale">1</setting>
+      </settings>
+      <elements>
+        <metadataElement code="dimensions_width" datatype="Length">
+          <labels>
+            <label locale="de_DE">
+              <name>Breite</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="fieldWidth">10</setting>
+            <setting name="fieldHeight">1</setting>
+          </settings>
+        </metadataElement>
+        <metadataElement code="dimensions_height" datatype="Length">
+          <labels>
+            <label locale="de_DE">
+              <name>Höhe</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="fieldWidth">10</setting>
+            <setting name="fieldHeight">1</setting>
+          </settings>
+        </metadataElement>
+        <metadataElement code="dimensions_depth" datatype="Length">
+          <labels>
+            <label locale="de_DE">
+              <name>Tiefe</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="fieldWidth">10</setting>
+            <setting name="fieldHeight">1</setting>
+          </settings>
+        </metadataElement>
+      </elements>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="objekt_schrift" datatype="List" list="script_codes_iso_15924">
+      <labels>
+        <label locale="de_DE">
+          <name>Schrift nach ISO 15924</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="requireValue">0</setting>
+        <setting name="listWidth">80</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">255</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="objekt_sprache" datatype="List" list="language">
+      <labels>
+        <label locale="de_DE">
+          <name>Sprache nach ISO 639-2</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="requireValue">0</setting>
+        <setting name="listWidth">80</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">255</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="editionshinweise" datatype="Text">
+      <labels>
+        <label locale="de_DE">
+          <name>Editionshinweise, Literaturhinweise, Bezugswerke</name>
+          <description>Texteditionen, die auf der Vorlage basieren, können ebenso angegeben werden wie wichtige Literatur über die Vorlage und Bezugswerke (kommentierte, übersetzte, zu- gehörige, rezensierte Werke).</description>
+        </label>
+      </labels>
+      <settings>
+        <setting name="fieldWidth">70</setting>
+        <setting name="fieldHeight">10</setting>
+        <setting name="minChars">0</setting>
+        <setting name="maxChars">65535</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="provenance" datatype="Text">
+      <labels>
+        <label locale="de_DE">
+          <name>Provenienz, Erwerbung, Verlust</name>
+          <description>Wichtige Informationen, Namen und Daten über Erwerbung, ggf. auch Verlust können angegeben werden. Ebenso können Angaben zur Geschichte eines Bestands oder Autographs ge- macht werden.</description>
+        </label>
+      </labels>
+      <settings>
+        <setting name="fieldWidth">70</setting>
+        <setting name="fieldHeight">10</setting>
+        <setting name="minChars">0</setting>
+        <setting name="maxChars">65535</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="erhaltungszustand" datatype="Text">
+      <labels>
+        <label locale="de_DE">
+          <name>Erhaltungszustand, Restaurierungsmaßnahmen</name>
+          <description>Der Erhaltungszustand, Beschädigungen bzw. erfolgte oder geplante Restaurierungsmaßnahmen können angegeben werden.</description>
+        </label>
+      </labels>
+      <settings>
+        <setting name="fieldWidth">70</setting>
+        <setting name="fieldHeight">10</setting>
+        <setting name="minChars">0</setting>
+        <setting name="maxChars">65535</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction code="r1">
+          <table>ca_objects</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
@@ -17341,9 +17550,59 @@
             <placement code="ca_attribute_time">
               <bundle>ca_attribute_time</bundle>
             </placement>
+            <placement code="ca_attribute_content_count">
+              <bundle>ca_attribute_content_count</bundle>
+            </placement>
+            <placement code="ca_attribute_work_dimensions">
+              <bundle>ca_attribute_work_dimensions</bundle>
+            </placement>
           </bundlePlacements>
         </screen>
-        
+        <screen idno="advanced_rna" default="0">
+          <labels>
+            <label locale="de_DE">
+              <name>Erweitert</name>
+            </label>
+          </labels>
+          <typeRestrictions>
+            <restriction code="r1" type="digitales_textdokument"/>
+            <restriction code="r2" type="digitalisiertes_textdokument"/>
+            <restriction code="r3" type="analoges_tondokument"/>
+            <restriction code="r4" type="digitales_tondokument"/>
+            <restriction code="r5" type="digitalisiertes_tondokument"/>
+            <restriction code="r6" type="analoges_bilddokument"/>
+            <restriction code="r7" type="digitales_bilddokument"/>
+            <restriction code="r8" type="digitalisiertes_bilddokument"/>
+            <restriction code="r9" type="mikrofilm"/>
+            <restriction code="r10" type="objekt"/>
+          </typeRestrictions>
+          <bundlePlacements>
+            <placement code="ca_attribute_objekt_sprache">
+              <bundle>ca_attribute_objekt_sprache</bundle>
+            </placement>
+            <placement code="ca_attribute_objekt_schrift">
+              <bundle>ca_attribute_objekt_schrift</bundle>
+            </placement>
+            <placement code="ca_attribute_content_description">
+              <bundle>ca_attribute_content_description</bundle>
+            </placement>
+            <placement code="editionshinweise">
+              <bundle>ca_attribute_editionshinweise</bundle>
+            </placement>
+            <placement code="provenance">
+              <bundle>ca_attribute_provenance</bundle>
+            </placement>
+            <placement code="erhaltungszustand">
+              <bundle>ca_attribute_erhaltungszustand</bundle>
+            </placement>
+            <placement code="benutzungsbeschraenkungen">
+              <bundle>ca_attribute_benutzungsbeschraenkungen</bundle>
+            </placement>
+            <placement code="ca_attribute_remarks">
+              <bundle>ca_attribute_remarks</bundle>
+            </placement>
+          </bundlePlacements>
+        </screen>
         <screen idno="rel_rna" default="0">
           <labels>
             <label locale="de_DE">
@@ -17843,11 +18102,14 @@
             <placement code="benutzungsbeschraenkungen">
               <bundle>ca_attribute_benutzungsbeschraenkungen</bundle>
             </placement>
-            <placement code="collection_content">
-              <bundle>ca_attribute_collection_content</bundle>
+            <placement code="content_count">
+              <bundle>ca_attribute_content_count</bundle>
             </placement>
             <placement code="ca_attribute_entstehungsort">
               <bundle>ca_attribute_entstehungsort</bundle>
+            </placement>
+            <placement code="ca_attribute_time">
+              <bundle>ca_attribute_time</bundle>
             </placement>
           </bundlePlacements>
         </screen>
