@@ -1,6 +1,6 @@
 <?php
 /* ----------------------------------------------------------------------
- * app/views/editor/entities/quickadd_html.php : 
+ * app/views/editor/collections/quickadd_html.php : 
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
@@ -39,14 +39,14 @@
 
 	$vb_can_edit	 	= $t_subject->isSaveable($this->request);
 	
-	$vs_form_name = "EntityQuickAddForm";
+	$vs_form_name = "CollectionQuickAddForm";
 ?>		
 <form action="#" name="<?php print $vs_form_name; ?>" method="POST" enctype="multipart/form-data" id="<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>">
-	<div class='dialogHeader quickAddDialogHeader'><?php 
+	<div class='dialogHeader' style='position: fixed; width: 890px; z-index:33000;'><?php 
 	print "<div class='quickAddTypeList'>"._t('Quick Add %1', $t_subject->getTypeListAsHTMLFormElement('change_type_id', array('id' => "{$vs_form_name}TypeID{$vs_field_name_prefix}{$vs_n}", 'onchange' => "caSwitchTypeQuickAddForm{$vs_field_name_prefix}{$vs_n}();"), array('value' => $t_subject->get('type_id'), 'restrictToTypes' => $va_restrict_to_types)))."</div>"; 
 	
 	if ($vb_can_edit) {
-		print "<div style='float: right;'>".caJSButton($this->request, __CA_NAV_BUTTON_ADD__, _t("Add %1", $t_subject->getProperty('NAME_SINGULAR')), "{$vs_form_name}{$vs_field_name_prefix}{$vs_n}", array("onclick" => "caSave{$vs_form_name}{$vs_field_name_prefix}{$vs_n}(event);"))
+		print "<div style='float: right;'>".caJSButton($this->request, __CA_NAV_BUTTON_ADD__, _t("Add %1", $t_subject->getTypeName()), "{$vs_form_name}{$vs_field_name_prefix}{$vs_n}", array("onclick" => "caSave{$vs_form_name}{$vs_field_name_prefix}{$vs_n}(event);"))
 		.' '.caJSButton($this->request, __CA_NAV_BUTTON_CANCEL__, _t("Cancel"), "{$vs_form_name}{$vs_field_name_prefix}{$vs_n}", array("onclick" => "jQuery(\"#{$vs_form_name}".$vs_field_name_prefix.$vs_n."\").parent().data(\"panel\").hidePanel();"))."</div><br style='clear: both;'/>\n";
 	}
 ?>
@@ -62,7 +62,6 @@
 			}
 			$va_force_new_label['locale_id'] = $g_ui_locale_id;							// use default locale
 			$va_force_new_label[$t_subject->getLabelDisplayField()] = $vs_q;				// query text is used for display field
-			$va_force_new_label = array_merge($va_force_new_label, DataMigrationUtils::splitEntityName($vs_q));		// query text split as entity name used for other entity label fields
 			
 			$va_form_elements = $t_subject->getBundleFormHTMLForScreen($this->getVar('screen'), array(
 					'request' => $this->request, 
@@ -81,7 +80,7 @@
 
 		<script type="text/javascript">
 			function caSave<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>(e) {
-				jQuery.post('<?php print caNavUrl($this->request, "editor/entities", "EntityQuickAdd", "Save"); ?>', jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>").serialize(), function(resp, textStatus) {
+				jQuery.post('<?php print caNavUrl($this->request, "editor/collections", "CollectionQuickAdd", "Save"); ?>', jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>").serialize(), function(resp, textStatus) {
 				
 					if (resp.status == 0) {
 						var inputID = jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>").parent().data('autocompleteInputID');
@@ -92,7 +91,7 @@
 						jQuery('#' + itemIDID).val(resp.id);
 						jQuery('#' + typeIDID).val(resp.type_id);
 						
-						jQuery.jGrowl('<?php print addslashes(_t('Created entity ')); ?> <em>' + resp.display + '</em>', { header: '<?php print addslashes(_t('Quick add %1', $t_subject->getProperty('NAME_SINGULAR'))); ?>' }); 
+						jQuery.jGrowl('<?php print addslashes(_t('Created %1 ', $t_subject->getTypeName())); ?> <em>' + resp.display + '</em>', { header: '<?php print addslashes(_t('Quick add %1', $t_subject->getTypeName())); ?>' }); 
 						jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>").parent().data('panel').hidePanel();
 					} else {
 						// error
@@ -115,7 +114,7 @@
 			function caSwitchTypeQuickAddForm<?php print $vs_field_name_prefix.$vs_n; ?>() {
 				jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?> input[name=type_id]").val(jQuery("#<?php print $vs_form_name; ?>TypeID<?php print $vs_field_name_prefix.$vs_n; ?>").val());
 				var data = jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>").serialize();
-				jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>").parent().load("<?php print caNavUrl($this->request, 'editor/entities', 'EntityQuickAdd', 'Form'); ?>", data);
+				jQuery("#<?php print $vs_form_name.$vs_field_name_prefix.$vs_n; ?>").parent().load("<?php print caNavUrl($this->request, 'editor/collections', 'CollectionQuickAdd', 'Form'); ?>", data);
 			}
 		</script>
 	</div>
