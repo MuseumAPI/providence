@@ -767,6 +767,31 @@
 			// Save "world" ACL
 			$t_subject->setACLWorldAccess($this->request->getParameter("{$vs_form_prefix}_access_world", pInteger));
 			
+			// Propagate ACL settings to records that inherit from this one
+			if ((bool)$t_subject->getProperty('SUPPORTS_ACL_INHERITANCE')) {
+				ca_acl::applyACLInheritanceToChildrenFromRow($t_subject);
+				if (is_array($va_inheritors = $t_subject->getProperty('ACL_INHERITANCE_LIST'))) {
+					foreach($va_inheritors as $vs_inheritor_table) {
+						ca_acl::applyACLInheritanceToRelatedFromRow($t_subject, $vs_inheritor_table);
+					}
+				}
+			}
+			
+			// Set ACL-related intrinsic fields
+			if ($t_subject->hasField('acl_inherit_from_ca_collections') || $t_subject->hasField('acl_inherit_from_parent')) {
+				$t_subject->setMode(ACCESS_WRITE);
+				if ($t_subject->hasField('acl_inherit_from_ca_collections')) {
+					$t_subject->set('acl_inherit_from_ca_collections', $this->request->getParameter('acl_inherit_from_ca_collections', pString));
+				}
+				if ($t_subject->hasField('acl_inherit_from_parent')) {
+					$t_subject->set('acl_inherit_from_parent', $this->request->getParameter('acl_inherit_from_parent', pString));
+				}
+				$t_subject->update();
+				
+				if ($t_subject->numErrors()) {
+					$this->postError(1250, _t('Could not set ACL inheritance settings: %1', join("; ", $t_subject->getErrors())),"BaseEditorController->SetAccess()");
+				}
+			}
  			$this->Access();
  		}
  		# -------------------------------------------------------

@@ -520,7 +520,7 @@ class BundlableLabelableBaseModelWithAttributes extends LabelableBaseModelWithAt
 							} else {
 								$va_rel_items = array();
 							}
-							return caProcessTemplateForIDs($vs_template, $va_tmp[0], $va_ids, array_merge($pa_options, array('relatedValues' => array_values($va_rel_items))));
+							return caProcessTemplateForIDs($vs_template, $va_tmp[0], $va_ids, $pa_options);
 						} else {
 							$va_proc_labels = array();
 							foreach($va_related_items as $vn_relation_id => $va_relation_info) {
@@ -560,14 +560,16 @@ class BundlableLabelableBaseModelWithAttributes extends LabelableBaseModelWithAt
 						
 						$va_ids = array();
 						$vs_pk = $t_instance->primaryKey();
+						$va_relationship_values = array();
 						if (is_array($va_rel_items = $this->get($va_tmp[0], $va_template_opts))) {
 							foreach($va_rel_items as $vn_rel_id => $va_rel_item) {
 								$va_ids[] = $va_rel_item[$vs_pk];
+								$va_relationship_values[$va_rel_item[$vs_pk]][$vn_rel_id] = $va_rel_item;
 							}
 						} else {
 							$va_rel_items = array();
 						}
-						return caProcessTemplateForIDs($vs_template, $va_tmp[0], $va_ids, array_merge($pa_options, array('relatedValues' => array_values($va_rel_items))));
+						return caProcessTemplateForIDs($vs_template, $va_tmp[0], $va_ids, array_merge($pa_options, array('relationshipValues' => $va_relationship_values)));
 					}
 					
 					$va_related_items = $this->getRelatedItems($va_tmp[0], array_merge($pa_options, array('returnLabelsAsArray' => true)));
@@ -1153,6 +1155,8 @@ class BundlableLabelableBaseModelWithAttributes extends LabelableBaseModelWithAt
 					}
 				}
 				
+				$o_view->setVar('bundle_name', $ps_bundle_name);
+				$o_view->setVar('settings', $pa_bundle_settings);
 				$o_view->setVar('t_instance', $this);
 				$vs_element = $o_view->render('intrinsic.php', true);
 				
@@ -1162,7 +1166,11 @@ class BundlableLabelableBaseModelWithAttributes extends LabelableBaseModelWithAt
 					TooltipManager::add('#'.$vs_field_id, "<h3>".$pa_options['label']."</h3>{$vs_description}");
 				}
 				
-				$vs_display_format = $o_config->get('bundle_element_display_format');
+				if (isset($pa_bundle_settings['forACLAccessScreen']) && $pa_bundle_settings['forACLAccessScreen']) {
+					$vs_display_format = '^ELEMENT';
+				} else {
+					$vs_display_format = $o_config->get('bundle_element_display_format');
+				}
 				break;
 			# -------------------------------------------------
 			case 'attribute':
@@ -4338,6 +4346,9 @@ $pa_options["display_form_field_tips"] = true;
 				$va_row[$vs_f] = $qr_res->get($vs_f);
 			}
 			$va_row['access_display'] = $t_acl->getChoiceListValue('access', $va_row['access']);
+		}
+		if (!strlen($va_row['access_display'])) {	// show default
+			$va_row['access_display'] = $t_acl->getChoiceListValue('access', $this->getAppConfig()->get('default_item_access_level'));
 		}
 		
 		return $va_row;

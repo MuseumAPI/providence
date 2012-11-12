@@ -241,7 +241,7 @@ class SearchEngine extends SearchBase {
 			));
 		}
 		if ($po_result) {
-			$po_result->init($o_res, $this->opa_tables);
+			$po_result->init($o_res, $this->opa_tables, $pa_options);
 			return $po_result;
 		} else {
 			return new SearchResult($o_res, $this->opa_tables);
@@ -432,6 +432,22 @@ class SearchEngine extends SearchBase {
 			$vs_locale_where = $vs_is_preferred_sql = '';
 			
 			$va_tmp = explode('.', $vs_field);
+			
+			// Rewrite for <table>.preferred_labels.* syntax
+			if ($va_tmp[1] == 'preferred_labels') {
+				if ($t_labeled_item_table = $this->opo_datamodel->getInstanceByTableName($va_tmp[0], true)) {
+					if ($t_label_table = $t_labeled_item_table->getLabelTableInstance()) {
+						$va_tmp2 = array($t_label_table->tableName());
+						if (isset($va_tmp[2]) && $t_label_table->hasField($va_tmp[2])) {
+							$va_tmp2[] = $va_tmp[2];
+						} else {
+							$va_tmp2[] = $t_label_table->getLabelDisplayField();
+						}
+						$va_tmp = $va_tmp2;
+						$vs_field = join(".", $va_tmp);
+					}
+				}
+			}
 			
 			if ($va_tmp[0] == $vs_table_name) {
 				//
