@@ -217,9 +217,9 @@ class SDKTitleGeneratorPlugin extends BaseApplicationPlugin {
 						$vs_label =
 							(strlen($vs_serientitel)>0 ? $vs_serientitel : "").
 							(strlen($vs_serientitel)>0 && strlen($vs_sortierungfolge)>0 ? " - ".$vs_sortierungfolge : "").
-							((strlen($vs_sortierungfolge)>0 || strlen($vs_serientitel)>0) && strlen($vs_sendetitel)>0 ? ": " : "").
+							((strlen($vs_serientitel)>0 && strlen($vs_sendetitel)>0) ? ": " : "").
 							(strlen($vs_sendetitel)>0 ? $vs_sendetitel : "").
-							(strlen($vs_serientitel)==0 && strlen($vs_sortierungfolge)>0 ? "(".$vs_sortierungfolge.")" : "");
+							(strlen($vs_serientitel)==0 && strlen($vs_sortierungfolge)>0 ? " (".$vs_sortierungfolge.")" : "");
 						if(strlen($vs_label)>0){
 							$pa_params['instance']->removeAllLabels();
 							$pa_params['instance']->addLabel(array(

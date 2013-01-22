@@ -7771,6 +7771,14 @@
                 </label>
               </labels>
               <items>
+                <item idno="sesame_st" enabled="1" default="0" type="concept">
+                  <labels>
+                    <label locale="de_DE" preferred="1">
+                      <name_singular>Sesamstraße</name_singular>
+                      <name_plural>Sesamstraße</name_plural>
+                    </label>
+                  </labels>
+                </item>
                 <item idno="kultur" enabled="1" default="0" type="concept">
                   <labels>
                     <label locale="en_US" preferred="1">
@@ -15223,6 +15231,14 @@
             <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
+        <restriction code="r3">
+          <table>ca_collections</table>
+          <settings>
+            <setting name="minAttributesPerRow">0</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
       </typeRestrictions>
     </metadataElement>
     <metadataElement code="content_description_source" datatype="Text">
@@ -18101,6 +18117,9 @@
             </placement>
             <placement code="benutzungsbeschraenkungen">
               <bundle>ca_attribute_benutzungsbeschraenkungen</bundle>
+            </placement>
+            <placement code="content_description">
+              <bundle>ca_attribute_content_description</bundle>
             </placement>
             <placement code="content_count">
               <bundle>ca_attribute_content_count</bundle>
